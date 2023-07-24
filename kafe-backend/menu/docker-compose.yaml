@@ -1,0 +1,42 @@
+version: "3.9"
+
+services:
+  #databases
+  drinks-menu-db:
+    environment:
+      - POSTGRES_PASSWORD=123
+    image: postgres
+    container_name: menuDB
+    ports:
+      - "5432:5432"
+    volumes:
+      - menuDbVol:/app/services/menu
+    restart: always
+
+  #backend services
+  menu-command-service:
+    image: menu-service/command
+    container_name: menu-command-service
+    build:
+      context: ./
+      dockerfile: Dockerfile-command
+    depends_on:
+      - drinks-menu-db
+    ports:
+      - "1001:1001"
+    restart: always
+
+  menu-query-service:
+    image: menu-service/query
+    container_name: menu-query-service
+    build:
+      context: ./
+      dockerfile: Dockerfile-query
+    depends_on:
+      - drinks-menu-db
+    ports:
+      - "1002:1002"
+    restart: always
+
+volumes:
+  menuDbVol:
