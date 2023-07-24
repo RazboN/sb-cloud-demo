@@ -3,13 +3,12 @@ spring:
     url: jdbc:postgresql://localhost:5432/kolaykafe
     username: postgres
     password: 123
-  jpa:
-    hibernate:
-      ddl-auto: update
-      format_sql: true
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    initialization-mode: always
   application:
     name: menu-service
+  cloud:
+    config:
+      uri: http://localhost:1080
 
 app:
   write:
@@ -21,3 +20,9 @@ server:
 eureka:
   instance:
     instance-id: ${spring.application.name}:${random.uuid}:write-${app.write.enabled}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

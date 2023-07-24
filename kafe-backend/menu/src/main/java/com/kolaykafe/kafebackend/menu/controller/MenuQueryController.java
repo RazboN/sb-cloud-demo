@@ -18,7 +18,7 @@ public class MenuQueryController {
     @Autowired
     private MenuQueryServiceImp _service;
 
-    @GetMapping("/{cafeId}")
+    @GetMapping()
     public Stream<MenuDTO> getCafeMenu(@RequestParam Long cafeId) {
         return _service.getMenuByCafeId(cafeId);
     }
