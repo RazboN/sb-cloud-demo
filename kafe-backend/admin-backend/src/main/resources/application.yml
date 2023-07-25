@@ -21,7 +21,7 @@ information:
 
 eureka:
   instance:
-    instance-id: ${spring.application.name}:${random.uuid}:write-${app.write.enabled}
+    instance-id: ${spring.application.name}:${random.uuid}
 
 
 
