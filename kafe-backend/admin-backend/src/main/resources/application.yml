@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: admin-service
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: KolayKafe
+      uri: mongodb://localhost:27017/KolayKafe
+
+server:
+  port: 1005
+
+information:
+  email:
+    sender:
+      host: smtp.gmail.com
+      debug: true
+      user: canrazbonyali@gmail.com
+      password: plvugpyfqexezaad
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${random.uuid}:write-${app.write.enabled}
+
+
+
+
+
+

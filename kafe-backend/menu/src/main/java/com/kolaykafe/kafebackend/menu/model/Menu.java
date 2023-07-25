@@ -5,33 +5,27 @@ import lombok.Data;
 
 @Entity
 @Data
-@Table(name = "menu")
+@Table(name = "MENU")
 
 public class Menu {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id")
+    @Column(name="ID")
     private Long id;
 
-    @Column(name="cafeId")
+    @Column(name="CAFEID")
     private Long cafeId;
 
-    @Column(name="urunAdi")
-    private String urunAdi;
+    @Column(name="ITEMNAME")
+    private String itemName;
 
-    @Column(name="icerik")
-    private String icerik;
+    @Column(name="PRICE")
+    private int price;
 
-    @Column(name="fiyat")
-    private int fiyat;
+    @Column(name="MAINCATEGORY")
+    private String mainCategory;
 
-    @Column(name="anaKategori")
-    private String anaKategori;
-
-    @Column(name="altKategori")
-    private String altKategori;
-
-    @Column(name="baslik")
-    private String baslik;
+    @Column(name="SUBCATEGORY")
+    private String subCategory;
 }

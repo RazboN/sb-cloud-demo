@@ -1,0 +1,9 @@
+FROM openjdk:17-alpine
+
+ENV WRITE_ENABLED=false
+ENV APP_PORT=1003
+
+WORKDIR app-menu-command
+COPY "./build/libs/menu-0.0.1-SNAPSHOT.jar" ./app-command.jar
+EXPOSE 1003
+ENTRYPOINT ["java","-jar","./app-command.jar"]

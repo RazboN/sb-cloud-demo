@@ -1,14 +1,13 @@
 spring:
   datasource :
-    url: jdbc:postgresql://localhost:5432/MENU_DB
+    url: jdbc:postgresql://localhost:5431/ORDERS_DB
     #
-    # TODO bu tip bilgileri vault gibi bir araçta tutmalı, bunu dene !!!
+    # TODO bu tip bilgileri vault gibi bir ara�ta tutmal?, bunu dene !!!
     #
     username: postgres
     password: 123
-    initialization-mode: always
   application:
-    name: menu-service
+    name: order-service
   cloud:
     config:
       uri: http://localhost:1080
@@ -29,3 +28,4 @@ management:
     web:
       exposure:
         include: '*'
+
