@@ -1,5 +1,6 @@
 package com.kolaycafe.service;
 
+import com.kolaycafe.dto.CafeDTO;
 import com.kolaycafe.model.Cafe;
 import com.kolaycafe.model.NewCafeInform;
 import com.kolaycafe.repository.ICafeRepository;
@@ -46,10 +47,10 @@ public class CafeService {
 
     public Cafe getCafeById(String id) {
         return cafeRepository.findById(id)
-            .orElseThrow(() -> new RuntimeException("Cafe not found."));
+            .orElseThrow(() -> new RuntimeException());
     }
 
-    public Cafe updateCafe(@NonNull String id, @NonNull Cafe newCafe) {
+    public Cafe updateCafe(@NonNull String id, @NonNull CafeDTO newCafe) {
 
         Cafe oldCafe = getCafeById(id);
 

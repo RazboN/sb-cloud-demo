@@ -1,5 +1,6 @@
 package com.kolaycafe.controller;
 
+import com.kolaycafe.dto.CafeDTO;
 import com.kolaycafe.exceptions.EntityExceptions;
 import com.kolaycafe.model.Cafe;
 import com.kolaycafe.repository.ICafeRepository;
@@ -14,9 +15,6 @@ import java.util.List;
 
 import static org.springframework.http.HttpStatus.*;
 
-/**
- * TODO: CORS ayarlarını config dosyasına Bean yapacağız.
- */
 @RestController
 @RequestMapping("/api/cafe")
 public class KolayCafeController {
@@ -73,7 +71,7 @@ public class KolayCafeController {
 
 
     @PutMapping("/{id}")
-    public ResponseEntity<String> updateCafe(@PathVariable String id, @RequestBody @Valid Cafe newCafe){
+    public ResponseEntity<String> updateCafe(@PathVariable String id, @RequestBody @Valid CafeDTO newCafe){
         try {
             cafeService.updateCafe(id,newCafe);
             String successMesage = "Updated: "+ newCafe;
