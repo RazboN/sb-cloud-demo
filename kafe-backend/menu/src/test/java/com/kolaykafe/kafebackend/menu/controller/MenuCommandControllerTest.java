@@ -10,6 +10,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.actuate.autoconfigure.observation.ObservationProperties;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.mockito.Mockito.when;
@@ -43,18 +46,18 @@ class MenuCommandControllerTest {
     void testUpdateMenuItemShouldReturnTrue() throws Exception {
         when(menuCommandServiceImp.addAndUpdateItemToMenu(menuDTO)).thenReturn(true);
 
-        boolean result = undertTest.updateMenuItem(menuDTO);
+        HttpStatusCode result = undertTest.updateMenuItem(menuDTO).getStatusCode();
 
-        Assertions.assertTrue(result);
+        Assertions.assertEquals(HttpStatus.OK, result);
     }
 
     @Test
     void testUpdateMenuItemShouldReturnFalse() throws Exception {
         when(menuCommandServiceImp.addAndUpdateItemToMenu(menuDTO)).thenReturn(false);
 
-        boolean result = undertTest.updateMenuItem(menuDTO);
+        HttpStatusCode result = undertTest.updateMenuItem(menuDTO).getStatusCode();;
 
-        Assertions.assertFalse(result);
+        Assertions.assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, result);
     }
 }
 

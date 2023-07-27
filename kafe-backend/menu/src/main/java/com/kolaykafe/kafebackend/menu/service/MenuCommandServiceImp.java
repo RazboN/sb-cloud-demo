@@ -19,7 +19,13 @@ public class MenuCommandServiceImp implements MenuCommandService {
     @Override
     @Transactional
     public boolean addAndUpdateItemToMenu(MenuDTO newItemDTO) {
-        Menu newItem = _mapper.map(newItemDTO, Menu.class);
-        return _menuRepo.save(newItem) != null;
+        try {
+            Menu newItem = _mapper.map(newItemDTO, Menu.class);
+            _menuRepo.save(newItem);
+            return true;
+        }
+        catch (Exception ex) {
+            return false;
+        }
     }
 }

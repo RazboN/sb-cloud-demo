@@ -1,9 +1,6 @@
 spring:
-  datasource :
+  datasource:
     url: jdbc:postgresql://localhost:5431/ORDERS_DB
-    #
-    # TODO bu tip bilgileri vault gibi bir araçta tutmal?, bunu dene !!!
-    #
     username: postgres
     password: 123
   application:

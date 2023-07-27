@@ -1,13 +1,13 @@
 spring:
   application:
-    name: kolay-kafe-conf?g-server
+    name: kolay-kafe-config-server
   cloud:
     config:
       server:
         git:
           uri: https://github.com/RazboN/sb-cloud-demo-configuration-server
           username: RazboN
-          password:
+          password: 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
           clone-on-start: true
 
 server:

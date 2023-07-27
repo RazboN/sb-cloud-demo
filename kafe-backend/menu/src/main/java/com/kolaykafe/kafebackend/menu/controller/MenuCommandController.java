@@ -4,6 +4,8 @@ import com.kolaykafe.kafebackend.menu.dto.MenuDTO;
 import com.kolaykafe.kafebackend.menu.service.MenuCommandServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +19,10 @@ public class MenuCommandController {
     private MenuCommandServiceImp _service;
 
     @PostMapping
-    public boolean updateMenuItem(@RequestBody MenuDTO item) {
-        return _service.addAndUpdateItemToMenu(item);
+    public ResponseEntity<MenuDTO> updateMenuItem(@RequestBody MenuDTO item) {
+        if(_service.addAndUpdateItemToMenu(item))
+            return ResponseEntity.status(HttpStatus.OK).body(item);
+        else
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
     }
 }
