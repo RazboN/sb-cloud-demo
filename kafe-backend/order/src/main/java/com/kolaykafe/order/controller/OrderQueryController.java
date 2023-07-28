@@ -11,7 +11,7 @@ import java.util.stream.Stream;
 
 @RestController
 @ConditionalOnProperty(name = "app.write.enabled", havingValue = "false")
-@RequestMapping("/api/order")
+@RequestMapping("/api/query/order")
 public class OrderQueryController {
 
     @GetMapping("/{cafeId}/{orderId}/{tableNo}")

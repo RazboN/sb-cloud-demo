@@ -16,7 +16,7 @@ import java.util.List;
 import static org.springframework.http.HttpStatus.*;
 
 @RestController
-@RequestMapping("/api/cafe")
+@RequestMapping("/api/admin/cafe")
 public class KolayCafeController {
 
     @Autowired

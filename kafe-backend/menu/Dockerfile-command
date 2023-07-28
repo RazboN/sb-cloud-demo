@@ -2,6 +2,7 @@ FROM openjdk:17-alpine
 
 ENV WRITE_ENABLED=true
 ENV APP_PORT=1001
+ENV SRV-TYPE=command
 
 WORKDIR app-menu-command
 COPY "./build/libs/menu-0.0.1-SNAPSHOT.jar" ./app-command.jar

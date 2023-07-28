@@ -1,20 +1,20 @@
-spring:
-  application:
-    name: menu-service
-
-app:
-  write:
-    enabled: ${WRITE_ENABLED}
-
-server:
-  port: ${APP_PORT}
-
-eureka:
-  instance:
-    instance-id: ${spring.application.name}:${random.uuid}:write-${app.write.enabled}
-
-management:
-  endpoints:
-    web:
-      exposure:
-        include: '*'
+#spring:
+#  application:
+#    name: menu-service-${SRV-TYPE}
+#
+#app:
+#  write:
+#    enabled: ${WRITE_ENABLED}
+#
+#server:
+#  port: ${APP_PORT}
+#
+#eureka:
+#  instance:
+#    instance-id: ${spring.application.name}:${random.uuid}:write-${app.write.enabled}
+#
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: '*'

@@ -27,6 +27,6 @@ public class MenuQueryController {
         if(res != null)
             return ResponseEntity.status(HttpStatus.OK).body(res);
         else
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+            return ResponseEntity.status(HttpStatus.OK).body(null);
     }
 }

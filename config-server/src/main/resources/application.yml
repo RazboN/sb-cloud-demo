@@ -7,7 +7,7 @@ spring:
         git:
           uri: https://github.com/RazboN/sb-cloud-demo-configuration-server
           username: RazboN
-          password: ghp_i2fCPC4hMdvvZF0BYXPif2gYaj8av41wMpRc
+          password: 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
           clone-on-start: true
 
 server:

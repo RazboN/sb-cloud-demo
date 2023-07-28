@@ -2,3 +2,20 @@ spring:
   cloud:
     config:
       uri: http://localhost:1080
+  application:
+    name: admin-backend-service
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: rzb
+    password: 123
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${random.uuid}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

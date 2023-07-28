@@ -1,18 +1,3 @@
-spring:
-  application:
-    name: admin-service
-
-information:
-  email:
-    sender:
-      host: smtp.gmail.com
-      debug: true
-      user: canrazbonyali@gmail.com
-      password: plvugpyfqexezaad
-
-eureka:
-  instance:
-    instance-id: ${spring.application.name}:${random.uuid}
 
 
 

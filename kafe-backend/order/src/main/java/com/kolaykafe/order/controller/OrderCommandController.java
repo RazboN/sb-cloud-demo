@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @ConditionalOnProperty(name = "app.write.enabled", havingValue = "true")
-@RequestMapping("/api/order")
+@RequestMapping("/api/command/order")
 public class OrderCommandController {
 
 }

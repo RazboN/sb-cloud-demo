@@ -1,4 +1,32 @@
 spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5431/ORDERS_DB
+    username: postgres
+    password: 123
+  application:
+    name: order-service
   cloud:
     config:
       uri: http://localhost:1080
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: rzb
+    password: 123
+
+app:
+  write:
+    enabled: ${WRITE_ENABLED}
+
+server:
+  port: ${APP_PORT}
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${random.uuid}:write-${app.write.enabled}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

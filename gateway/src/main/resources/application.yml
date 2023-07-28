@@ -1,0 +1,36 @@
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    loadbalancer:
+      ribbon: enabled
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+      - id: menu-service
+        uri: lb://menu-service
+        predicates:
+          - Path=/api/query/menu** , /api/command/menu**
+      - id: order-service
+        uri: lb://menu-service
+        predicates:
+          - Path=/api/query/order**, /api/command/order**
+      - id: admin-backend-service
+        uri: lb://admin-backend-service
+        predicates:
+          - Path=/api/admin/cafe**
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${random.uuid}
+
+server:
+  port: 8090
+
+
+
+
+
