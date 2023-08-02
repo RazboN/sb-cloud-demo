@@ -15,7 +15,7 @@ spring:
         predicates:
           - Path=/api/query/menu** , /api/command/menu**
       - id: order-service
-        uri: lb://menu-service
+        uri: lb://order-service
         predicates:
           - Path=/api/query/order**, /api/command/order**
       - id: admin-backend-service

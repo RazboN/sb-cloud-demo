@@ -2,7 +2,7 @@ package com.kolaykafe.kafebackend.menu.service;
 
 import com.kolaykafe.kafebackend.menu.repository.IMenuRepository;
 
-import com.kolaykafe.kafebackend.menu.service.interfaces.MenuQueryService;
+import com.kolaykafe.kafebackend.menu.service.interfaces.IMenuQueryService;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -14,7 +14,7 @@ class MenuQueryServiceImpTest {
     @MockBean
     private IMenuRepository iMenuRepository;
     @MockBean
-    private MenuQueryService menuQueryService;
+    private IMenuQueryService IMenuQueryService;
 
     @MockBean
     private ModelMapper modelMapper;

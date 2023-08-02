@@ -4,6 +4,7 @@ import com.kolaykafe.kafebackend.menu.dto.MenuDTO;
 
 import java.util.stream.Stream;
 
-public interface MenuQueryService {
+public interface IMenuQueryService {
     Stream<MenuDTO> getMenuByCafeId(Long cafeId);
+    Long getMenuItemIdByName(String itemName);
 }

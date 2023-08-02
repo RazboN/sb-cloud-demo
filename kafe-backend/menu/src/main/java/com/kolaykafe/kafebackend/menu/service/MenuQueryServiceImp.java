@@ -3,19 +3,17 @@ package com.kolaykafe.kafebackend.menu.service;
 import com.kolaykafe.kafebackend.menu.dto.MenuDTO;
 import com.kolaykafe.kafebackend.menu.model.Menu;
 import com.kolaykafe.kafebackend.menu.repository.IMenuRepository;
-import com.kolaykafe.kafebackend.menu.service.interfaces.MenuQueryService;
-import lombok.extern.slf4j.Slf4j;
+import com.kolaykafe.kafebackend.menu.service.interfaces.IMenuQueryService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.w3c.dom.stylesheets.LinkStyle;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 
 @Service
-public class MenuQueryServiceImp implements MenuQueryService {
+public class MenuQueryServiceImp implements IMenuQueryService {
     @Autowired
     private IMenuRepository _menuRepo;
     @Autowired
@@ -32,6 +30,12 @@ public class MenuQueryServiceImp implements MenuQueryService {
         catch (Exception e) {
             return null;
         }
+    }
+
+    @Override
+    public Long getMenuItemIdByName(String itemName) {
+        return _menuRepo.findByItemName(itemName).orElseThrow(() ->
+                new RuntimeException("Item nor found")).getId();
     }
 
     private MenuDTO modelToDto(Menu obj) {
