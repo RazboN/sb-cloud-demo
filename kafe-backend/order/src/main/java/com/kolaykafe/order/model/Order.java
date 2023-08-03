@@ -26,7 +26,7 @@ Order {
     private boolean orderActive;
 
     @Column(name = "PRICE")
-    private boolean price;
+    private int price;
 
     @Column(name = "ORDER_DATE")
     private Date orderDate;

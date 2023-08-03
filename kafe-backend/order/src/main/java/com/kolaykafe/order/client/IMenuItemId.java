@@ -11,5 +11,5 @@ import java.util.List;
 @FeignClient(value = "menu-service", url = "http://localhost:1001/api/query/menu")
 public interface IMenuItemId {
     @PostMapping("/items")
-    List<OrderDetails> getItemNameById(@RequestBody List<OrderItemsDTO> items);
+    Long getItemNameById(@RequestBody String itemName);
 }

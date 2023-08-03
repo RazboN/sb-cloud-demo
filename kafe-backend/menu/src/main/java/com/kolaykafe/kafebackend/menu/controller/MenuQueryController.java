@@ -1,6 +1,7 @@
 package com.kolaykafe.kafebackend.menu.controller;
 
 import com.kolaykafe.kafebackend.menu.dto.MenuDTO;
+import com.kolaykafe.kafebackend.menu.model.client.OrderDetails;
 import com.kolaykafe.kafebackend.menu.model.client.OrderItemsDTO;
 import com.kolaykafe.kafebackend.menu.service.MenuQueryServiceImp;
 import lombok.extern.slf4j.Slf4j;
@@ -33,8 +34,18 @@ public class MenuQueryController {
     }
 
     @PostMapping("/items")
-    public Long getMenuItemIdByName(@NotNull @RequestBody List<OrderItemsDTO> orderItems) {
-        orderItems.forEach(itm -> log.info("item name: {0}", itm.getItemName()));
-        return null;//_service.getMenuItemIdByName(itemName);
+    public ResponseEntity<Long> getMenuItemIdByName(
+            @NotNull @RequestBody String orderItemName) {
+
+        try {
+            Long itemId = _service.getMenuItemIdByName(orderItemName);
+
+            return ResponseEntity.status(HttpStatus.OK)
+                    .body(itemId);
+        }
+        catch (Exception ex)
+        {
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
+        }
     }
 }
