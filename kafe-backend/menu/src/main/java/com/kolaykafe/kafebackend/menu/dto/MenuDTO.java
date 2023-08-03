@@ -11,10 +11,8 @@ import lombok.NoArgsConstructor;
 @Builder
 public class MenuDTO {
     private Long cafeId;
-    private String urunAdi;
-    private String icerik;
-    private int fiyat;
-    private String anaKategori;
-    private String altKategori;
-    private String baslik;
+    private String itemName;
+    private int price;
+    private String mainCategory;
+    private String subCategory;
 }
