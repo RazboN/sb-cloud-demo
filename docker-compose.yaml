@@ -35,6 +35,17 @@ services:
       - adminDbVol:/app/services/admin
     restart: always
 
+  #keycloak
+  keycloak-service:
+    environment:
+      - KEYCLOAK_ADMIN=admin
+      - KEYCLOAK_ADMIN_PASSWORD=admin
+    container_name: KEYCLOAK
+    ports:
+      - 8001:8080
+    command:
+      - start-dev
+
   #backend services
   
   discovery-server: ####

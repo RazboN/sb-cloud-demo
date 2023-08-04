@@ -9,6 +9,18 @@ spring:
     port: 5672
     username: rzb
     password: 123
+  security:
+    oauth2:
+      resource-server:
+        jwt:
+          issuer-uri: http://localhost:8001/realms/kolay-kafe-services-realm
+          jwk-set-uri: ${spring.security.oauth2.resource-server.jwt.issuer-uri}/protocol/openid-connect/certs
+
+jwt:
+  auth:
+    converter:
+      resource-id: spring-cloud-gateway
+      principle-attribute: razbon
 
 app:
   write:

@@ -1,0 +1,22 @@
+services:
+  KEYCLOAKDBMS:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: admin
+      POSTGRES_USER: admin
+      POSTGRES_DB: KEYCLOAK_DB
+    ports:
+      - 5430:5432
+  KEYCLOAK:
+    image: quay.io/keycloak/keycloak
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+      KC_DB: postgres
+      KC_DB_URL: jdbc:postgresql://KEYCLOAKDBMS/KEYCLOAK_DB
+      KC_DB_USERNAME: admin
+      KC_DB_PASSWORD: admin
+    ports:
+      - 8001:8080
+    command:
+      - start-dev
