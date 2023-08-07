@@ -28,12 +28,10 @@ class MenuCommandControllerTest {
     @BeforeEach
     void setup(){
         menuDTO = new MenuDTO();
-        menuDTO.setAltKategori("Alt Kategori");
-        menuDTO.setAnaKategori("Ana Kategori");
-        menuDTO.setBaslik("Baslik");
-        menuDTO.setFiyat(1);
-        menuDTO.setIcerik("Icerik");
-        menuDTO.setUrunAdi("Urun Adi");
+        menuDTO.setSubCategory("Alt Kategori");
+        menuDTO.setMainCategory("Ana Kategori");
+        menuDTO.setPrice(1);
+        menuDTO.setItemName("Urun Adi");
     }
 
     /**
@@ -43,7 +41,7 @@ class MenuCommandControllerTest {
     void testUpdateMenuItemShouldReturnTrue() throws Exception {
         when(menuCommandServiceImp.addAndUpdateItemToMenu(menuDTO)).thenReturn(true);
 
-        HttpStatusCode result = undertTest.updateMenuItem(menuDTO).getStatusCode();
+        HttpStatusCode result = undertTest.addMenuItem(menuDTO).getStatusCode();
 
         Assertions.assertEquals(HttpStatus.OK, result);
     }
@@ -52,7 +50,7 @@ class MenuCommandControllerTest {
     void testUpdateMenuItemShouldReturnFalse() throws Exception {
         when(menuCommandServiceImp.addAndUpdateItemToMenu(menuDTO)).thenReturn(false);
 
-        HttpStatusCode result = undertTest.updateMenuItem(menuDTO).getStatusCode();;
+        HttpStatusCode result = undertTest.addMenuItem(menuDTO).getStatusCode();;
 
         Assertions.assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, result);
     }

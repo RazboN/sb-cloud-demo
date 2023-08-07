@@ -19,7 +19,7 @@ public class MenuCommandController {
     private MenuCommandServiceImp _service;
 
     @PostMapping
-    public ResponseEntity<MenuDTO> updateMenuItem(@RequestBody MenuDTO item) {
+    public ResponseEntity<MenuDTO> addMenuItem(@RequestBody MenuDTO item) {
         if(_service.addAndUpdateItemToMenu(item))
             return ResponseEntity.status(HttpStatus.OK).body(item);
         else
