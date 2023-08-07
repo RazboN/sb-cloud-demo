@@ -14,11 +14,16 @@ import static org.springframework.security.config.http.SessionCreationPolicy.STA
 
 @Configuration
 @EnableWebSecurity
-@EnableMethodSecurity
 @RequiredArgsConstructor
 public class SecurityConfig {
     @Autowired
     private final JwtAuthConverter jwtAuthConverter;
+
+    /**
+     *                  !!!! TAKİP ET !!!!
+     *
+     *  BİR ÇALIŞLIYOR BİR ÇALIŞMIYOR GİBİ BİR ŞEYLER VAR GİBİ
+     * */
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -26,7 +31,9 @@ public class SecurityConfig {
                 .csrf()
                 .disable()
                 .authorizeHttpRequests()
-                .anyRequest()
+                .requestMatchers("/api/query/menu**","/api/query/order**")
+                .permitAll()
+                .requestMatchers("/api/command/menu**","/api/command/order**")
                 .authenticated();
 
         http

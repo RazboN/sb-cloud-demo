@@ -2,6 +2,7 @@ package com.kolaykafe.gateway.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
 import org.springframework.security.config.web.server.ServerHttpSecurity;
 import org.springframework.security.web.server.SecurityWebFilterChain;
@@ -10,12 +11,28 @@ import org.springframework.security.web.server.SecurityWebFilterChain;
 @EnableWebFluxSecurity
 public class SecurityConfig {
 
-    @Bean
-    public SecurityWebFilterChain securityChain(ServerHttpSecurity serverSecurity) {
-        serverSecurity.authorizeExchange(exchange -> exchange.anyExchange().authenticated())
-                .oauth2ResourceServer(ServerHttpSecurity.OAuth2ResourceServerSpec::jwt);
+    /**
+     * TODO: BU ŞEKİLDE YEDİ GİBİ İNCELEMEYE DEVAM !!!
+     *       ADMIN BACKEND İÇİN DE YAPILACAK
+     * */
 
-        serverSecurity.csrf().disable();
-        return serverSecurity.build();
+    @Bean
+    public SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
+        http
+                .authorizeExchange((exchanges) ->
+                        exchanges
+                                .pathMatchers("/api/command/menu**","/api/command/order**")
+                                    .hasRole("ADMIN")
+                                .pathMatchers("/api/query/menu**","/api/query/order**")
+                                    .permitAll()
+                ).oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()));
+
+//                .authorizeExchange(exchange ->
+//                        exchange.pathMatchers("/api/query/menu**","/api/query/order**")
+//                                .permitAll()
+//                );
+
+        http.csrf(csrf -> csrf.disable());
+        return http.build();
     }
 }
