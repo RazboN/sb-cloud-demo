@@ -1,4 +1,4 @@
-package com.kolaykafe.kafebackend.menu.utils;
+package com.kolaykafe.user.utils;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.convert.converter.Converter;
