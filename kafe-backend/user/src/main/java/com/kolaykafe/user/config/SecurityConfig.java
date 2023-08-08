@@ -1,6 +1,6 @@
-package com.kolaykafe.kafebackend.menu.config;
+package com.kolaykafe.user.config;
 
-import com.kolaykafe.kafebackend.menu.utils.JwtAuthConverter;
+import com.kolaykafe.user.utils.JwtAuthConverter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -18,21 +18,15 @@ public class SecurityConfig {
     @Autowired
     private final JwtAuthConverter jwtAuthConverter;
 
-    /**
-     *                  !!!! TAKİP ET !!!!
-     *
-     *  BİR ÇALIŞLIYOR BİR ÇALIŞMIYOR GİBİ BİR ŞEYLER VAR GİBİ
-     * */
-
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf()
                 .disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/api/query/menu**","/api/query/order**")
+                .requestMatchers("/api/command/user**")
                 .permitAll()
-                .requestMatchers("/api/command/menu**","/api/command/order**")
+                .requestMatchers("/api/query/user**")
                 .authenticated();
 
         http
