@@ -1,0 +1,51 @@
+# config server a bu servisi ekle,
+# kafka ayarı yap
+# kafka docker ayaklandır
+# pub/sub şekilde
+
+
+spring:
+  cloud:
+    config:
+      uri: http://localhost:1080
+  application:
+    name: user-service-consumer
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: rzb
+    password: 123
+  security:
+    oauth2:
+      resource-server:
+        jwt:
+          issuer-uri: http://localhost:8001/realms/kolay-kafe-services-realm
+          jwk-set-uri: ${spring.security.oauth2.resource-server.jwt.issuer-uri}/protocol/openid-connect/certs
+
+jwt:
+  auth:
+    converter:
+      resource-id: spring-cloud-gateway
+      principle-attribute: razbon
+
+  kafka:
+    consumer:
+      bootstrap-servers: localhost:9092
+      group-id: user-service-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+
+
+server:
+  port: ${APP_PORT}
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${random.uuid}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
