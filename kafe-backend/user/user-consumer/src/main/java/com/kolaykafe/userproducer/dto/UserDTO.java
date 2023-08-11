@@ -14,5 +14,5 @@ public class UserDTO {
     private String password;
     private String email;
     private String phoneNumber;
-    private Boolean mailVerified = false;
+    private Boolean mailVerified;
 }

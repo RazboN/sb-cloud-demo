@@ -17,8 +17,11 @@ public class UserQueryServiceImp implements IUserQueryService {
     @Override
     public Stream<UserDTO> getAllUsers() {
         Stream<UserDTO> stUsers = null;
+        /**
+         * mesaj gidemedi
+         * */
         CompletableFuture<SendResult<String, Object>> msgResult =
-                kafkaTemplate.send("verify-email", "all-users");
+                kafkaTemplate.send("get-all", "all-users");
 
         msgResult.whenComplete((res,ex) -> {
             if(ex == null) {

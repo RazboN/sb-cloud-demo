@@ -30,7 +30,7 @@ public class KafkaQueryListener implements IUserQueryService {
 
     @Override
     public UserDTO getUserByEmail(String email) {
-        User user = _repo.fingByEmail(email);
+        User user = _repo.findByEmail(email);
 
         UserDTO userDTO = new UserDTO(user.getFullName(),
                 user.getPassword(),

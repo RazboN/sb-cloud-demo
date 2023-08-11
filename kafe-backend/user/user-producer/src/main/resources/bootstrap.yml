@@ -4,17 +4,17 @@ spring:
 #      uri: http://localhost:1080
   application:
     name: user-service
-#  rabbitmq:
-#    host: localhost
-#    port: 5672
-#    username: rzb
-#    password: 123
-#  security:
-#    oauth2:
-#      resource-server:
-#        jwt:
-#          issuer-uri: http://localhost:8001/realms/kolay-kafe-services-realm
-#          jwk-set-uri: ${spring.security.oauth2.resource-server.jwt.issuer-uri}/protocol/openid-connect/certs
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: rzb
+    password: 123
+  security:
+    oauth2:
+      resource-server:
+        jwt:
+          issuer-uri: http://localhost:8001/realms/kolay-kafe-services-realm
+          jwk-set-uri: ${spring.security.oauth2.resource-server.jwt.issuer-uri}/protocol/openid-connect/certs
 
   kafka:
     producer:
@@ -27,7 +27,6 @@ jwt:
     converter:
       resource-id: spring-cloud-gateway
       principle-attribute: razbon
-
 
 app:
   write:

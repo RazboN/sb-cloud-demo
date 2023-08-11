@@ -24,10 +24,10 @@ public class SecurityConfig {
                 .csrf()
                 .disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/api/command/user**")
-                .permitAll()
-                .requestMatchers("/api/query/user**")
-                .authenticated();
+                .requestMatchers("/api/query/user**", "/api/command/user**")
+                .permitAll();
+//                .requestMatchers("/api/command/user**")
+//                .authenticated();
 
         http
                 .oauth2ResourceServer()

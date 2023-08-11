@@ -17,11 +17,15 @@ spring:
       - id: order-service
         uri: lb://order-service
         predicates:
-          - Path=/api/query/order**, /api/command/order**
+          - Path=/api/query/order** , /api/command/order**
       - id: admin-backend-service
         uri: lb://admin-backend-service
         predicates:
           - Path=/api/admin/cafe**
+      - id: user-service
+        uri: lb://user-service
+        predicates:
+          - Path=/api/query/user** , /api/command/user**
   security:
     oauth2:
       resource-server:

@@ -24,7 +24,10 @@ public class SecurityConfig {
                         exchanges
                                 .pathMatchers("/api/command/menu**","/api/command/order**")
                                     .hasRole("ADMIN")
-                                .pathMatchers("/api/query/menu**","/api/query/order**")
+                                .pathMatchers("/api/query/menu**",
+                                        "/api/query/order**",
+                                        "/api/query/user**",
+                                        "/api/command/user**")
                                     .permitAll()
                 ).oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()));
 
