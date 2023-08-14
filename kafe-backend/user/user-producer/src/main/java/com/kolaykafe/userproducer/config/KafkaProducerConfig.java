@@ -3,6 +3,7 @@ package com.kolaykafe.userproducer.config;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.core.DefaultKafkaProducerFactory;
@@ -15,6 +16,13 @@ import java.util.Map;
 
 @Configuration
 public class KafkaProducerConfig {
+    @Value("${spring.kafka.producer.bootstrap-servers}")
+    private String bootstrapServers;
+
+    @Bean
+    public NewTopic getAll() {
+        return new NewTopic("get-all", 3, (short) 1);
+    }
     @Bean
     public NewTopic register() {
         return new NewTopic("register", 3, (short) 1);
@@ -24,22 +32,14 @@ public class KafkaProducerConfig {
         return new NewTopic("update", 3, (short) 1);
     }
     @Bean
-    public NewTopic getAll() {
-        return new NewTopic("get-all", 3, (short) 1);
-    }
-    @Bean
     public NewTopic verifyMail() {
         return new NewTopic("verify-email", 3, (short) 1);
-    }
-    @Bean
-    public NewTopic delete() {
-        return new NewTopic("delete", 3, (short) 1);
     }
     @Bean
     public Map<String,Object> producerConfig(){
         Map<String,Object> props=new HashMap<>();
         props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,
-                "localhost:9092");
+                bootstrapServers);
         props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG,
                 StringSerializer.class);
         props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,
