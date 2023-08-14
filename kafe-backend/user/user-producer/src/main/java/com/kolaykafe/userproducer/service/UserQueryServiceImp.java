@@ -20,12 +20,17 @@ public class UserQueryServiceImp implements IUserQueryService {
         /**
          * mesaj gidemedi
          * */
-        CompletableFuture<SendResult<String, Object>> msgResult =
-                kafkaTemplate.send("get-all", "all-users");
 
+        CompletableFuture<SendResult<String, Object>> msgResult =
+                kafkaTemplate.execute(msg -> {
+                    return kafkaTemplate.send("get-all", new UserDTO("can",
+                            "123","aa","bb",true));
+                }).toCompletableFuture();
+
+        //completed olamıyor nedeni bul???
         msgResult.whenComplete((res,ex) -> {
             if(ex == null) {
-                //message sent succesfuly
+                msgResult.complete(res);
             }
             else {
                 throw new RuntimeException("Message from Kafka: {0}", ex.getCause());
