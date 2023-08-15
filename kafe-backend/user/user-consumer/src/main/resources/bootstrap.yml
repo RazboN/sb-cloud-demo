@@ -31,20 +31,19 @@ spring:
         jwt:
           issuer-uri: http://localhost:8001/realms/kolay-kafe-services-realm
           jwk-set-uri: ${spring.security.oauth2.resource-server.jwt.issuer-uri}/protocol/openid-connect/certs
-
-jwt:
-  auth:
-    converter:
-      resource-id: spring-cloud-gateway
-      principle-attribute: razbon
-
   kafka:
     consumer:
       bootstrap-servers: localhost:9092
       group-id: user-service-group
       auto-offset-reset: earliest
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      value-deserializer: org.springframework.kafka.support.serializer.JsonSerializer
+      value-deserializer: com.kolaykafe.userproducer.config.DTODeserializer
+
+jwt:
+  auth:
+    converter:
+      resource-id: spring-cloud-gateway
+      principle-attribute: razbon
 
 
 server:

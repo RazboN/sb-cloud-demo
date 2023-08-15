@@ -17,7 +17,7 @@ public class KafkaCommandListener implements IUserCommandService {
 
     @Override
     @KafkaListener(topics = "register", groupId = "user-service-group")
-    public UserDTO registerUser(@Payload UserDTO obj, Acknowledgment ack) {
+    public void registerUser(@Payload UserDTO obj) {
         User newUser = new User();
         newUser.setFullName(obj.getFullName());
         newUser.setPassword(obj.getPassword());
@@ -26,13 +26,11 @@ public class KafkaCommandListener implements IUserCommandService {
         newUser.setMailVerified(false);
 
         _repo.save(newUser);
-        ack.acknowledge();
-        return obj;
     }
 
     @Override
     @KafkaListener(topics = "update", groupId = "user-service-group")
-    public UserDTO updateUser(@Payload UserDTO obj, Acknowledgment ack) {
+    public UserDTO updateUser(@Payload UserDTO obj) {
         User recentUser = _repo.findByEmail(obj.getEmail());
 
         recentUser.setFullName(obj.getFullName());
@@ -42,18 +40,16 @@ public class KafkaCommandListener implements IUserCommandService {
         recentUser.setMailVerified(obj.getMailVerified());
 
         _repo.save(recentUser);
-        ack.acknowledge();
         return obj;
     }
 
     @Override
     @KafkaListener(topics = "verify-email", groupId = "user-service-group")
-    public boolean verifyEmail(@Payload String email, Acknowledgment ack) {
+    public boolean verifyEmail(@Payload String email) {
         User verifiedMail = _repo.findByEmail(email);
         verifiedMail.setMailVerified(true);
 
         _repo.save(verifiedMail);
-        ack.acknowledge();
         return true;
     }
 }

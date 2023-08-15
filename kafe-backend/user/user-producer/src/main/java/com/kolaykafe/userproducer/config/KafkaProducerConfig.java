@@ -1,6 +1,7 @@
 package com.kolaykafe.userproducer.config;
 
 import org.apache.kafka.clients.admin.NewTopic;
+import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.beans.factory.annotation.Value;
@@ -43,7 +44,8 @@ public class KafkaProducerConfig {
         props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG,
                 StringSerializer.class);
         props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,
-                JsonSerializer.class);
+                DTOSerializer.class);
+
         return props;
     }
 
@@ -56,4 +58,7 @@ public class KafkaProducerConfig {
     public KafkaTemplate<String,Object> kafkaTemplate(){
         return new KafkaTemplate<>(producerFactory());
     }
+
+    @Bean
+    public KafkaProducer<String,Object> kafkaProducer() { return new KafkaProducer<>(producerConfig()); }
 }

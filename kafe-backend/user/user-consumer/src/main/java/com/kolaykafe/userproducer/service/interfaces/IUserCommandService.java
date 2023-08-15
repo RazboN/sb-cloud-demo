@@ -7,10 +7,10 @@ import org.springframework.messaging.handler.annotation.Payload;
 
 public interface IUserCommandService {
     @KafkaListener(topics = "update", groupId = "user-service-group")
-    UserDTO updateUser(@Payload UserDTO obj, Acknowledgment ack);
+    UserDTO updateUser(@Payload UserDTO obj);
     @KafkaListener(topics = "verify-email", groupId = "user-service-group")
-boolean verifyEmail(@Payload String email, Acknowledgment ack);
+    boolean verifyEmail(@Payload String email);
 
     @KafkaListener(topics = "register", groupId = "user-service-group")
-    UserDTO registerUser(@Payload UserDTO obj, Acknowledgment ack);
+    void registerUser(@Payload UserDTO obj);
 }
