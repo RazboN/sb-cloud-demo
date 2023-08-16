@@ -19,7 +19,7 @@ public class KafkaQueryListener implements IUserQueryService {
     @Autowired
     private IUserRepository _repo;
     @Override
-    @KafkaListener(topics = "get-all", groupId = "user-service-group")
+    @KafkaListener(topics = "get_all", groupId = "${spring.kafka.consumer.group-id}")
     public void getAllUsers(ConsumerRecord<String, Object> record) {
         /**
          * gönderilen mesaj geliyor
