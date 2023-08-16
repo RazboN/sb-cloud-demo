@@ -23,7 +23,7 @@ spring:
         predicates:
           - Path=/api/admin/cafe**
       - id: user-service
-        uri: lb://user-service
+        uri: lb://user-service-producer
         predicates:
           - Path=/api/query/user** , /api/command/user**
   security:
