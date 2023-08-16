@@ -1,6 +1,6 @@
 spring:
   application:
-    name: user-service
+    name: user-service-producer
   cloud:
     config:
       uri: http://localhost:1080
