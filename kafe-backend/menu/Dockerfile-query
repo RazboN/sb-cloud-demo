@@ -2,9 +2,8 @@ FROM openjdk:17-alpine
 
 ENV WRITE_ENABLED=false
 ENV APP_PORT=1002
-ENV SRV-TYPE=query
 
-WORKDIR app-menu-query
+WORKDIR app-menu
 COPY "./build/libs/menu-0.0.1-SNAPSHOT.jar" ./app-query.jar
 EXPOSE 1002
 ENTRYPOINT ["java","-jar","./app-query.jar"]

@@ -1,0 +1,9 @@
+FROM openjdk:17-alpine
+
+ENV WRITE_ENABLED=false
+ENV APP_PORT=1007
+
+WORKDIR user-service
+COPY "./build/libs/user-producer-0.0.1-SNAPSHOT.jar" ./user-query-producer.jar
+EXPOSE 1007
+ENTRYPOINT ["java","-jar","./user-query-producer.jar"]
