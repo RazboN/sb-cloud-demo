@@ -1,60 +1,8 @@
-# config server a bu servisi ekle,
-# kafka ayarı yap
-# kafka docker ayaklandır
-# pub/sub şekilde
-
-
 spring:
-  datasource:
-    url: jdbc:postgresql://localhost:5429/users_db
-    username: postgres
-    password: 123
-  initialization-mode: always
-  jpa:
-    hibernate:
-      ddl-auto: create
-      format_sql: true
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  application:
+    name: user-service-consumer
   cloud:
     config:
       uri: http://localhost:1080
-  application:
-    name: user-service-consumer
-  rabbitmq:
-    host: localhost
-    port: 5672
-    username: rzb
-    password: 123
-  security:
-    oauth2:
-      resource-server:
-        jwt:
-          issuer-uri: http://localhost:8001/realms/kolay-kafe-services-realm
-          jwk-set-uri: ${spring.security.oauth2.resource-server.jwt.issuer-uri}/protocol/openid-connect/certs
-  kafka:
-    consumer:
-      bootstrap-servers: localhost:9092
-      group-id: user-service-group
-      auto-offset-reset: earliest
-      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      value-deserializer: com.kolaykafe.userproducer.config.DTODeserializer
-
-jwt:
-  auth:
-    converter:
-      resource-id: spring-cloud-gateway
-      principle-attribute: razbon
-
-
-server:
-  port: ${APP_PORT}
-
-eureka:
-  instance:
-    instance-id: ${spring.application.name}:${random.uuid}
-
-management:
-  endpoints:
-    web:
-      exposure:
-        include: '*'
+  server:
+    port: ${APP_PORT}
