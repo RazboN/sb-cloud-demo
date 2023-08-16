@@ -1,0 +1,9 @@
+FROM openjdk:17-alpine
+
+ENV WRITE_ENABLED=true
+ENV APP_PORT=1006
+
+WORKDIR user-service
+COPY "./build/libs/user-producer-0.0.1-SNAPSHOT.jar" ./user-command-producer.jar
+EXPOSE 1006
+ENTRYPOINT ["java","-jar","./user-command-producer.jar"]
