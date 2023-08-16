@@ -11,3 +11,12 @@ app:
 
 server:
   port: ${APP_PORT}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    refresh:
+      enabled: true
