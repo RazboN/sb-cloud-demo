@@ -25,7 +25,7 @@ public class UserCommandServiceImp implements IUserCommandService {
     @Override
     public UserDTO registerUser(UserDTO obj) throws RuntimeException, ExecutionException, InterruptedException {
         int retVal = 1;
-        ProducerRecord<String,Object> producerRec = new ProducerRecord<>("register","key1", obj);
+        ProducerRecord<String,Object> producerRec = new ProducerRecord<>("register", obj);
         kafkaProducer.send(producerRec, new Callback() {
             @Override
             public void onCompletion(RecordMetadata metadata, Exception exception) {
@@ -38,6 +38,9 @@ public class UserCommandServiceImp implements IUserCommandService {
                 }
             }
         }).get();
+
+//        kafkaProducer.flush();
+//        kafkaProducer.close();
 
         return obj;
     }

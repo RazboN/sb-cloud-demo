@@ -22,7 +22,7 @@ public class KafkaProducerConfig {
 
     @Bean
     public NewTopic getAll() {
-        return new NewTopic("get-all", 3, (short) 1);
+        return new NewTopic("get_all", 3, (short) 1);
     }
     @Bean
     public NewTopic register() {
@@ -34,7 +34,7 @@ public class KafkaProducerConfig {
     }
     @Bean
     public NewTopic verifyMail() {
-        return new NewTopic("verify-email", 3, (short) 1);
+        return new NewTopic("verify_email", 3, (short) 1);
     }
     @Bean
     public Map<String,Object> producerConfig(){

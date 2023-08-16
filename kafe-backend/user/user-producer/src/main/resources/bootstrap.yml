@@ -1,33 +1,9 @@
 spring:
-#  cloud:
-#    config:
-#      uri: http://localhost:1080
   application:
     name: user-service
-  rabbitmq:
-    host: localhost
-    port: 5672
-    username: rzb
-    password: 123
-  security:
-    oauth2:
-      resource-server:
-        jwt:
-          issuer-uri: http://localhost:8001/realms/kolay-kafe-services-realm
-          jwk-set-uri: ${spring.security.oauth2.resource-server.jwt.issuer-uri}/protocol/openid-connect/certs
-
-  kafka:
-    producer:
-      bootstrap-servers: 127.0.0.1:9092
-      key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
-      group-id: user-service-group
-
-jwt:
-  auth:
-    converter:
-      resource-id: spring-cloud-gateway
-      principle-attribute: razbon
+  cloud:
+    config:
+      uri: http://localhost:1080
 
 app:
   write:
@@ -35,13 +11,3 @@ app:
 
 server:
   port: ${APP_PORT}
-
-eureka:
-  instance:
-    instance-id: ${spring.application.name}:${random.uuid}:write-${app.write.enabled}
-
-management:
-  endpoints:
-    web:
-      exposure:
-        include: '*'

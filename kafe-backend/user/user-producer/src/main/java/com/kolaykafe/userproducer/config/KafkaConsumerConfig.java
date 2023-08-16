@@ -1,27 +1,21 @@
 package com.kolaykafe.userproducer.config;
 
-import com.kolaykafe.userproducer.dto.UserDTO;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
-import org.apache.kafka.clients.producer.KafkaProducer;
-import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
-import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.kafka.core.*;
-import org.springframework.kafka.support.serializer.JsonSerializer;
+import org.springframework.kafka.core.ConsumerFactory;
+import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 
 import java.util.HashMap;
 import java.util.Map;
 
-@Configuration
-public class KafkaConfig {
+public class KafkaConsumerConfig {
+    @Value("${spring.kafka.producer.bootstrap-servers}")
+    private String BOOTSTRAP_SERVERS;
     @Value("${spring.kafka.consumer.group-id}")
     private String GROUP_ID;
-    @Value("${spring.kafka.consumer.bootstrap-servers}")
-    private String BOOTSTRAP_SERVERS;
     @Bean
     public Map<String, Object> consumerConfig() {
         Map<String, Object> configProps = new HashMap<>();
@@ -38,10 +32,11 @@ public class KafkaConfig {
 
         return configProps;
     }
-//    @Bean
-//    public ConsumerFactory<String,Object> producerFactory(){
-//        return new DefaultKafkaConsumerFactory<>(consumerConfig());
-//    }
-//    @Bean
-//    public KafkaConsumer<String,Object> kafkaConsumer() { return new KafkaConsumer<>(consumerConfig()); }
+
+    @Bean
+    public ConsumerFactory<String,Object> consumerFactory(){
+        return new DefaultKafkaConsumerFactory<>(consumerConfig());
+    }
+    @Bean
+    public KafkaConsumer<String,Object> kafkaConsumer() { return new KafkaConsumer<>(consumerConfig()); }
 }
