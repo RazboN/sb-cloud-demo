@@ -43,7 +43,7 @@ public class KafkaCommandListener implements IUserCommandService {
     }
 
     @Override
-    @KafkaListener(topics = "verify-email", groupId = "${spring.kafka.consumer.group-id}")
+    @KafkaListener(topics = "verify_email", groupId = "${spring.kafka.consumer.group-id}")
     public boolean verifyEmail(@Payload String email) {
         User verifiedMail = _repo.findByEmail(email);
         verifiedMail.setMailVerified(true);

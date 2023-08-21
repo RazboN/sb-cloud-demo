@@ -16,6 +16,7 @@ services:
   order-backend-db:
     environment:
       - POSTGRES_PASSWORD=123
+      - POSTGRES_DB=ORDERS_DB
     image: postgres
     container_name: ORDERDB
     ports:
@@ -27,6 +28,18 @@ services:
   admin-backend-db:
     environment:
       - POSTGRES_PASSWORD=123
+    image: mongo
+    container_name: ADMINDB
+    ports:
+      - "27017:27017"
+    volumes:
+      - adminDbVol:/app/services/admin
+    restart: always
+
+  users-backend-db:
+    environment:
+      - POSTGRES_PASSWORD=123
+      - POSTGRES_DB=USERS_DB
     image: mongo
     container_name: ADMINDB
     ports:
