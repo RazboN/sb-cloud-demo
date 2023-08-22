@@ -17,23 +17,16 @@ import static org.springframework.security.config.http.SessionCreationPolicy.STA
 public class SecurityConfig {
     @Autowired
     private final JwtAuthConverter jwtAuthConverter;
-
-    /**
-     *                  !!!! TAKİP ET !!!!
-     *
-     *  BİR ÇALIŞLIYOR BİR ÇALIŞMIYOR GİBİ BİR ŞEYLER VAR GİBİ
-     * */
-
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf()
                 .disable()
-                .authorizeHttpRequests()
-                .requestMatchers("/api/query/menu**","/api/query/order**")
-                .permitAll()
-                .requestMatchers("/api/command/menu**","/api/command/order**")
-                .authenticated();
+                .authorizeHttpRequests().anyRequest().permitAll();
+//                .requestMatchers("/api/query/menu**","/api/query/order**")
+//                .permitAll()
+//                .requestMatchers("/api/command/menu**","/api/command/order**")
+//                .authenticated();
 
         http
                 .oauth2ResourceServer()

@@ -25,16 +25,17 @@ services:
       - orderDbVol:/app/services/order
     restart: always
 
-  admin-backend-db:
-    environment:
-      - POSTGRES_PASSWORD=123
-    image: mongo
-    container_name: ADMINDB
-    ports:
-      - "27017:27017"
-    volumes:
-      - adminDbVol:/app/services/admin
-    restart: always
+  # düzenlenecek !!!
+  # admin-backend-db:
+  #   environment:
+  #     - POSTGRES_PASSWORD=123
+  #   image: mongo
+  #   container_name: ADMINDB
+  #   ports:
+  #     - "27017:27017"
+  #   volumes:
+  #     - adminDbVol:/app/services/admin
+  #   restart: always
 
   users-backend-db:
     environment:

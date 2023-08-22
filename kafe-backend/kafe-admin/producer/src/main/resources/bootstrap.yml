@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: kafe-admin-producer
+#  cloud:
+#    config:
+#      uri: http://localhost:1080
+  kafka:
+    bootstrap-servers: localhost:9093
+    consumer:
+      group-id: cafe-admin-menu-group
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    admin:
+      auto-create: true
+
+server:
+  port: ${APP_PORT}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    refresh:
+      enabled: true
