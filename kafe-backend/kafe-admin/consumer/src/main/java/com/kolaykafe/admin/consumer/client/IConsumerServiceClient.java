@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-@FeignClient(value = "menu-service", url = "http://localhost:1001/api/command/menu")
+@FeignClient(value = "${app.request-service-name}", url = "${app.save-request}")
 public interface IConsumerServiceClient {
     @PostMapping
     ResponseEntity<ItemDTO> addItemToMenuServiceDb(@RequestBody ItemDTO item);

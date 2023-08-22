@@ -10,12 +10,6 @@ import org.springframework.security.web.server.SecurityWebFilterChain;
 @Configuration
 @EnableWebFluxSecurity
 public class SecurityConfig {
-
-    /**
-     * TODO: BU ŞEKİLDE YEDİ GİBİ İNCELEMEYE DEVAM !!!
-     *       ADMIN BACKEND İÇİN DE YAPILACAK
-     * */
-
     @Bean
     public SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
         http
