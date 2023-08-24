@@ -5,6 +5,7 @@ services:
   menu-backend-db:
     environment:
       - POSTGRES_PASSWORD=123
+      POSTGRES_DB=MENU_DB
     image: postgres
     container_name: MENUDB
     ports:
@@ -25,19 +26,6 @@ services:
       - orderDbVol:/app/services/order
     restart: always
 
-  # düzenlenecek !!!
-  # admin-backend-db:
-  #   environment:
-  #     - POSTGRES_PASSWORD=123
-  #   image: mongo
-  #   container_name: ADMINDB
-  #   ports:
-  #     - "27017:27017"
-  #   volumes:
-  #     - adminDbVol:/app/services/admin
-  #   restart: always
-
-  # kafe admin authantication için, prod da bu ayarlar kullanılmamalı
   keycloak_serv:
     image: quay.io/keycloak/keycloak:latest
     command: start-dev
@@ -73,10 +61,10 @@ services:
     environment:
       - POSTGRES_PASSWORD=123
       - POSTGRES_DB=USERS_DB
-    image: mongo
+    image: postgres
     container_name: ADMINDB
     ports:
-      - "27017:27017"
+      - "5431:5432"
     volumes:
       - adminDbVol:/app/services/admin
     restart: always
