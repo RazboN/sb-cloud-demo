@@ -5,7 +5,7 @@ services:
   menu-backend-db:
     environment:
       - POSTGRES_PASSWORD=123
-      POSTGRES_DB=MENU_DB
+      - POSTGRES_DB=MENU_DB
     image: postgres
     container_name: MENUDB
     ports:
