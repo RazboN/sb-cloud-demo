@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: kafe-admin-producer
+  cloud:
+    config:
+      uri: http://localhost:1080
+
+server:
+  port: ${APP_PORT}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    refresh:
+      enabled: true

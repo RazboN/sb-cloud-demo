@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: kafe-admin-consumer
+  cloud:
+    config:
+      uri: http://localhost:1080
+
+server:
+  port: ${APP_PORT}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    refresh:
+      enabled: true
+
+app:
+  save-request: http://localhost:1001/api/command/menu
+  request-service-name: menu-service
