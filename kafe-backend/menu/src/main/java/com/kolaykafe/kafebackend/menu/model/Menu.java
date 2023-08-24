@@ -24,7 +24,7 @@ public class Menu {
     private String itemName;
 
     @Column(name="PRICE")
-    private int price;
+    private double price;
 
     @Column(name="MAINCATEGORY")
     private String mainCategory;

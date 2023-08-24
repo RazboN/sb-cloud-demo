@@ -10,16 +10,10 @@ import org.springframework.security.web.server.SecurityWebFilterChain;
 @Configuration
 @EnableWebFluxSecurity
 public class SecurityConfig {
-
-    /**
-     * TODO: BU ŞEKİLDE YEDİ GİBİ İNCELEMEYE DEVAM !!!
-     *       ADMIN BACKEND İÇİN DE YAPILACAK
-     * */
-
     @Bean
     public SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
         http
-                .csrf(csrf -> csrf.disable())
+                .csrf(ServerHttpSecurity.CsrfSpec::disable)
                 .authorizeExchange((exchanges) ->
                         exchanges
                                 .pathMatchers("/api/command/menu**","/api/command/order**")

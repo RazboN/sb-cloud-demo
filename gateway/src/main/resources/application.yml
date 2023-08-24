@@ -26,6 +26,10 @@ spring:
         uri: lb://user-service-producer
         predicates:
           - Path=/api/query/user** , /api/command/user**
+      - id: kafe-admin-producer
+        uri: lb://kafe-admin-producer
+        predicates:
+          - Path=/api/admin
   security:
     oauth2:
       resource-server:

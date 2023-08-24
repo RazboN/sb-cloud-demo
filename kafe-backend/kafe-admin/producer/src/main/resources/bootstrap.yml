@@ -1,13 +1,9 @@
 spring:
   application:
-    name: user-service-producer
+    name: kafe-admin-producer
   cloud:
     config:
       uri: http://localhost:1080
-
-app:
-  write:
-    enabled: ${WRITE_ENABLED}
 
 server:
   port: ${APP_PORT}

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/command/menu")
+@RequestMapping("/api/command/menu/")
 @ConditionalOnProperty(name = "app.write.enabled", havingValue = "true")
 public class MenuCommandController {
     @Autowired

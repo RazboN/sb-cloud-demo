@@ -1,13 +1,13 @@
-package com.kolaykafe.userproducer;
+package com.kolaykafe.admin;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class UserApplicationTests {
+class ProducerApplicationTests {
 
-//	@Test
-//	void contextLoads() {
-//	}
+    @Test
+    void contextLoads() {
+    }
 
 }
